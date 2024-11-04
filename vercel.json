@@ -1,0 +1,33 @@
+{
+    "version": 2,
+    "name": "devbank-frontend",
+    "builds": [
+      {
+        "src": "angular.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist/devbank-frontend"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/dist/devbank-frontend/$1"
+      }
+    ],
+    "env": {
+      "ANGULAR_BUILD_BUDGET_WARNING": "2mb",
+      "ANGULAR_BUILD_BUDGET_ERROR": "4mb"
+    },
+    "build": {
+      "env": {
+        "ANGULAR_BUILD_BUDGET_WARNING": "2mb",
+        "ANGULAR_BUILD_BUDGET_ERROR": "4mb"
+      }
+    },
+    "settings": {
+      "nodeVersion": "16.x"
+    }
+  }
+  
