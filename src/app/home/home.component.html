@@ -1,0 +1,14 @@
+<div class="container d-flex flex-column justify-content-center align-items-center vh-100 p-5">
+  <ngb-toast *ngIf="toastMessage" [autohide]="true" [delay]="3000" class="position-fixed top-0 start-0 m-3"
+    [class.bg-success]="toastType === 'success'" [class.bg-danger]="toastType === 'error'">
+    {{ toastMessage }}
+  </ngb-toast>
+
+  <h1 class="mb-5 text-center display-1 mt-5" style="color: #004085;">devBank</h1>
+  <div class="d-flex flex-column gap-3 w-50 text-center">
+    <input type="email" [(ngModel)]="email" class="form-control mb-3 border-0 border-bottom" placeholder="Email" style="border-color: #004085;" />
+    <input type="password" [(ngModel)]="password" class="form-control mb-4 border-0 border-bottom" placeholder="Senha" style="border-color: #004085;" />
+    <button pButton type="button" class="btn btn-primary mb-2 w-100 py-3" (click)="login()" style="background-color: #0069d9; border-color: #0069d9;">LOGIN</button>
+    <button pButton type="button" class="btn btn-primary w-100 py-3" routerLink="/cadastrar" style="background-color: #0069d9; border-color: #0069d9;">CREATE ACCOUNT</button>
+  </div>
+</div>

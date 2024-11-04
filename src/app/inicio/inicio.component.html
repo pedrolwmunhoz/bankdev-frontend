@@ -1,0 +1,55 @@
+<div class="container d-flex flex-column justify-content-center align-items-center vh-100 p-5">
+    <ngb-toast *ngIf="toastMessage" [autohide]="true" [delay]="3000" class="position-fixed top-0 start-0 m-3"
+      [class.bg-success]="toastType === 'success'" 
+      [class.bg-danger]="toastType === 'error'" 
+      [class.bg-info]="toastType === 'info'">
+      {{ toastMessage }}
+    </ngb-toast>
+  
+    <h1 class="text-center display-4" style="color: #004085;">Welcome to DevBank</h1>
+    <h3 class="text-center" style="color: #004085;">{{ clienteNome }}</h3>
+  
+    <div class="w-50 text-center mt-4 mb-5">
+      <p class="lead">Conta número: {{ numeroConta }}</p>
+      <p class="lead">
+        Saldo Atual: R$ {{ saldoAtual | number:'1.2-2' }}
+        <br />
+        Limite de Crédito: R$ {{ limiteCredito | number:'1.2-2' }}
+      </p>
+    </div>
+  
+    <div class="d-flex flex-column gap-3 w-50 text-center mb-5">
+      <h4 class="text-start mb-3">Transferência:</h4>
+      <input type="number" [(ngModel)]="idPessoaTransferir" class="form-control mb-3 border-0 border-bottom"
+        placeholder="ID da Pessoa para Transferência" style="border-color: #004085;" />
+      <input type="number" [(ngModel)]="valorTransferencia" class="form-control mb-3 border-0 border-bottom"
+        placeholder="Valor da Transferência" style="border-color: #004085;" />
+      <button type="button" class="btn btn-primary w-100 py-3" (click)="transferir()"
+        style="background-color: #0069d9; border-color: #0069d9;">Transferir</button>
+    </div>
+  
+    <div class="w-75">
+      <h4 class="text-start mb-3">Extrato dos Últimos 30 dias:</h4>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>Data e Hora</th>
+            <th>Tipo de Movimentação</th>
+            <th>Valor</th>
+            <th>Descrição</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="extrato.length === 0">
+            <td colspan="4" class="text-center">Nenhuma movimentação encontrada</td>
+          </tr>
+          <tr *ngFor="let movimentacao of extrato">
+            <td>{{ movimentacao.dataHora | date:'dd/MM/yyyy HH:mm' }}</td>
+            <td>{{ movimentacao.tipoMovimentacao }}</td>
+            <td>R$ {{ movimentacao.valor | number:'1.2-2' }}</td>
+            <td>{{ movimentacao.descricao }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
