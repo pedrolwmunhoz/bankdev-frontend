@@ -26,8 +26,8 @@ export class CadastrarComponent {
   bairro: string = '';
   cidade: string = '';
   estado: string = '';
-  saldoAtual: number = 0;
-  limiteCredito: number = 0;
+  saldoAtual: number = 55000;
+  limiteCredito: number = 15000;
 
   toastMessage: string = '';
   toastType: 'success' | 'error' | '' = '';

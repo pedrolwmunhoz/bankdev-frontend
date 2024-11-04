@@ -16,9 +16,12 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CadastrarComponent } from './cadastro/cadastrar.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { InicioComponent } from './inicio/inicio.component';
+import { LoadingComponent } from './loading/loading.component';
+import { LoadingService } from './loading/loading.service';
+import { HttpRequestInterceptor } from './http.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { InicioComponent } from './inicio/inicio.component';
     HomeComponent,
     CadastrarComponent,
     InicioComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,14 @@ import { InicioComponent } from './inicio/inicio.component';
     ReactiveFormsModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    LoadingService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpRequestInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

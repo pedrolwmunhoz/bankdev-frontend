@@ -39,7 +39,7 @@ export class InicioComponent implements OnInit {
 
         this.clienteNome = this.pessoaFisica?.nome || this.pessoaJuridica?.razaoSocial || '';
 
-        this.numeroConta = `4004${this.idPessoa}`;
+        this.numeroConta = `${this.idPessoa}`;
         if (this.idPessoa) {
           this.atualizarDadosTransferencia(this.idPessoa);
         }
@@ -116,4 +116,9 @@ export class InicioComponent implements OnInit {
       this.toastType = '';
     }, 3000);
   }
+
+  logout(): void {
+    window.location.href = '/';
+  }
+  
 }
